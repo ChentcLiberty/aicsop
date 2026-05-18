@@ -1,5 +1,8 @@
 import json
 from Skills import parse_spec, generate_rtl, generate_testbench, coverage_fix, generate_notes
+import os
+
+os.makedirs("aicsop", exist_ok=True)
 
 tasks = [
     {"name": "parse_spec", "func": parse_spec, "model": "free"},
@@ -17,5 +20,8 @@ for task in tasks:
     if not success:
         context.setdefault("failure_log", []).append({task["name"]: result})
 
-with open("context.json", "w") as f:
-    json.dump(context, f, indent=2)
+context_path = os.path.join("aicsop", "context.json")
+with open(context_path, "w", encoding="utf-8") as f:
+    json.dump(context, f, indent=2, ensure_ascii=False)
+
+print("Context and notes generated in 'aicsop/' folder with UTF-8 encoding.")

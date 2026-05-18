@@ -1,4 +1,5 @@
 from random import randint
+import os
 
 def parse_spec(context, model_type):
     print(f"[{model_type}] parse_spec running")
@@ -18,17 +19,20 @@ def generate_testbench(context, model_type):
 def coverage_fix(context, model_type):
     print(f"[{model_type}] coverage_fix running")
     success = randint(0,1)
-    result = {"coverage": "95%" if success else "80%", "fixes": ["alu_signal_fix" if success else "alu_signal_fix_pending"]}
+    result = {"coverage": "95%" if success else "80%",
+              "fixes": ["alu_signal_fix" if success else "alu_signal_fix_pending"]}
     return result, success
 
 def generate_notes(context, model_type):
-    notes = f"""### IC ËéÆ¬±Ê¼Ç
-Spec½âÎö: {context.get('parse_spec')}
-RTLÉú³É: {context.get('generate_rtl')}
+    notes = f"""### IC ç¢ç‰‡çŸ¥è¯†ç¬”è®°
+Specè§£æ: {context.get('parse_spec')}
+RTLç”Ÿæˆ: {context.get('generate_rtl')}
 Testbench: {context.get('generate_testbench')}
-¸²¸ÇÂÊĞŞ¸´: {context.get('coverage_fix')}
-Ê§°Ü¼ÇÂ¼: {context.get('failure_log', 'ÎŞ')}
+è¦†ç›–ç‡ä¿®å¤: {context.get('coverage_fix')}
+å¤±è´¥è®°å½•: {context.get('failure_log', 'æ— ')}
 """
-    with open("IC_fragment_notes.md", "w") as f:
+    notes_path = os.path.join("aicsop", "IC_fragment_notes.md")
+    os.makedirs(os.path.dirname(notes_path), exist_ok=True)
+    with open(notes_path, "w", encoding="utf-8") as f:
         f.write(notes)
     return notes, True
