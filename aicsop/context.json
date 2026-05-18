@@ -22,20 +22,10 @@
     ]
   },
   "coverage_fix": {
-    "coverage": "80%",
+    "coverage": "95%",
     "fixes": [
-      "alu_signal_fix_pending"
+      "alu_signal_fix"
     ]
   },
-  "failure_log": [
-    {
-      "coverage_fix": {
-        "coverage": "80%",
-        "fixes": [
-          "alu_signal_fix_pending"
-        ]
-      }
-    }
-  ],
-  "generate_notes": "### IC 碎片知识笔记\nSpec解析: {'modules': ['ALU', 'RegFile'], 'interfaces': ['AXI', 'APB']}\nRTL生成: {'rtl_files': ['alu.v', 'regfile.v']}\nTestbench: {'testbench': ['alu_tb.v', 'regfile_tb.v']}\n覆盖率修复: {'coverage': '80%', 'fixes': ['alu_signal_fix_pending']}\n失败记录: [{'coverage_fix': {'coverage': '80%', 'fixes': ['alu_signal_fix_pending']}}]\n"
+  "generate_notes": "### IC 碎片知识笔记\nSpec解析: {'modules': ['ALU', 'RegFile'], 'interfaces': ['AXI', 'APB']}\nRTL生成: {'rtl_files': ['alu.v', 'regfile.v']}\nTestbench: {'testbench': ['alu_tb.v', 'regfile_tb.v']}\n覆盖率修复: {'coverage': '95%', 'fixes': ['alu_signal_fix']}\n失败记录: 无\n"
 }
